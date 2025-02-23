@@ -2,7 +2,7 @@
 [**API参考项目**](https://github.com/UIGF-org/mihoyo-api-collect)
 
 # 版本遗留问题：
-- [ ] 无法解决获**取角色5003**
+- [ ] 无法解决**获取角色5003**
 
 # 其他
 > tips：或许有大佬可以推荐几个参考项目吗awa
