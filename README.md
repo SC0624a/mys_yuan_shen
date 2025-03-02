@@ -13,19 +13,23 @@
 # 调用示例
 ~~~python
 from mhy_ys.py import mys_api
+import time
 
 uid = input(请输入你的uid)
 data = mys_api.GET_Qr_login()
 qr_code = data['qr_code']
 tk = data['tk']
 print(f'请使用mys扫码，路径：{qr_code}')
+
 time.sleep(3)
 data = mys_api.GET_Qr_login_1(ticket=tk)
 login = data['login']
 print(login)
+
 time.sleep(3)
 data = mys_api.Hk4eToken(uid)
 print(data['play'])
+
 time.sleep(3)
 data = mys_api.yuan_shen_jue_se_data()
 print(data)
