@@ -5,11 +5,6 @@
 - [x] 解决**获取角色5003**
 - [ ] 创建更多的功能
 
-# 其他
-> tips：或许有大佬可以推荐几个参考项目吗awa
-> 
-> 尝试理解过[getDeviceFP.test.ts](https://github.com/BTMuli/TGAssistant/blob/master/test/getDeviceFP.test.ts)和[request.py#L131](https://github.com/Genshin-bots/gsuid_core/blob/2aff12e8d3b74160dbcb4f4407b7b1f22d82f718/gsuid_core/utils/api/mys/request.py#L131)这两个项目~~但并没有什么收获~~
-
 # 调用示例
 ~~~python
 from mhy_ys.py import mys_api
@@ -34,3 +29,8 @@ time.sleep(3)
 data = mys_api.yuan_shen_jue_se_data()
 print(data)
 ~~~
+
+# 其他
+> tips：或许有大佬可以推荐几个参考项目吗awa
+> 
+> 尝试理解过[getDeviceFP.test.ts](https://github.com/BTMuli/TGAssistant/blob/master/test/getDeviceFP.test.ts)和[request.py#L131](https://github.com/Genshin-bots/gsuid_core/blob/2aff12e8d3b74160dbcb4f4407b7b1f22d82f718/gsuid_core/utils/api/mys/request.py#L131)这两个项目~~但并没有什么收获~~
