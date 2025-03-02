@@ -53,43 +53,29 @@ device = uuid.uuid4()
 
 def generate_fp_by_uid():
     seed_id = generate_seed(16)
-    device_id = device.hex
     seed_time = str(int(time.time() * 1000))
-    ext_fields = {"userAgent":f"{_HEADER['User-Agent']}",
-       "browserScreenSize":343089,
-       "maxTouchPoints":5,
-       "isTouchSupported":True,
-       "browserLanguage":"zh-CN",
-       "browserPlat":"Linux aarch64",
-       "browserTimeZone":"Asia/Shanghai",
-       "webGlRender":"Adreno (TM) 642",
-       "webGlVendor":"Qualcomm",
-       "numOfPlugins":0,
-       "listOfPlugins":"unknown",
-       "screenRatio":2.75,
-       "deviceMemory":"8",
-       "hardwareConcurrency":"8",
-       "cpuClass":"unknown",
-       "ifNotTrack":"unknown",
-       "ifAdBlock":0,
-       "hasLiedResolution":1,
-       "hasLiedOs":0,
-       "hasLiedBrowser":0}
+    ext_fields = f'{{"userAgent":"{_HEADER["User-Agent"]}",\
+    "browserScreenSize":281520,"maxTouchPoints":5,\
+    "isTouchSupported":true,"browserLanguage":"zh-CN","browserPlat":"iPhone",\
+    "browserTimeZone":"Asia/Shanghai","webGlRender":"Apple GPU",\
+    "webGlVendor":"Apple Inc.",\
+    "numOfPlugins":0,"listOfPlugins":"unknown","screenRatio":3,"deviceMemory":"unknown",\
+    "hardwareConcurrency":"4","cpuClass":"unknown","ifNotTrack":"unknown","ifAdBlock":0,\
+    "hasLiedResolution":1,"hasLiedOs":0,"hasLiedBrowser":0}}'
     body = {
-    "device_id": device_id,
-     "seed_id": seed_id,
-     "seed_time": seed_time,
-     "platform": "5",
-     "device_fp": generate_seed(13),
-     "app_name": "account_cn",
-     "ext_fields": json.dumps(ext_fields)
+        'seed_id': seed_id,
+        'device_id': device.hex,
+        'platform': '4',
+        'seed_time': seed_time,
+        'ext_fields': ext_fields,
+        'app_name': 'bbs_cn',   #account_cn
+        'device_fp': '38d803971d929',
     }
     HEADER = copy.deepcopy(_HEADER)
     res = fw.post(url=GET_FP_URL,headers=HEADER,json=body)
     res = json.loads(res.text)
     device_fp = res['data']['device_fp']
     return device_fp
-
 
 def get_headers(url,x_rpc_client_type,ds,cookies):
     o1 = f'{url}'
@@ -199,6 +185,7 @@ class mys_api:
         salt = 'xV8v4Qu54lUKrEYFZkJhB8cuOh9Asafs'
         h = get_headers(url='https://api-takumi-record.mihoyo.com/game_record/app/genshin/api/index',
                         x_rpc_client_type='5', ds=f'{ds2(salt, body, q)}', cookies=f'{cookies}')
+        h['x-rpc-device_id'] = '393b7391-3cf6-498c-8f7e-197fda0496a0'
         h['x-rpc-device_fp'] = '38d803971d929'
         a = fw.get(
             f'https://api-takumi-record.mihoyo.com/game_record/app/genshin/api/index?server=cn_gf01&role_id={self.uid}',
